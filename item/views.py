@@ -24,6 +24,7 @@ def items(request):
         'category_id': int(category_id)
     })
 
+#OPEN DETAILED PAGE FOR ITEM
 def detail(request, pk):
     item = get_object_or_404(Item, pk=pk)
     related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(pk=pk)[0:3]
@@ -33,6 +34,7 @@ def detail(request, pk):
         'related_items': related_items
     })
 
+#CREATE NEW ITEM
 @login_required
 def new(request):
     if request.method == 'POST':
